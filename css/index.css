@@ -1,0 +1,133 @@
+@import url(main.css);
+
+/* HTML header*/
+header{
+    background-color: var(--nav-color);
+    
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    grid-column-start: 1;
+    grid-column-end: 4;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    padding: 2rem;
+    padding-bottom: 0.5rem;
+}
+div.title {
+    color: var(--header-text);
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+nav {
+    background-color: var(--nav-color);
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: right;
+}
+.nav-buttons{
+
+    background-color: var(--button-color);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+div.nav-buttons > a{
+    background-color: var(--button-color);
+    color: var(--alt-text);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+
+
+/* HTML Body */
+body{
+    color: var(--main-text);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 3fr 1fr;
+    row-gap: 2rem;
+}
+
+main{
+    grid-row-start: 2 ; 
+    grid-row-end: 3 ;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+    column-gap: 1rem;
+}
+
+aside{
+    background-color: var(--aside-color);
+    color: var(--aside-text);
+    
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+
+}
+article{
+    background-color: var(--bg-color);
+    color: var(--main-text);
+    font-size: 1.25rem;
+
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+}
+
+
+
+/* HTML Footer*/
+footer{
+    background-color: var(--footer-color);
+    color: var(--header-text);
+    grid-row-start: 3;
+    grid-row-end: 4;
+
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+}
+.to-top{
+
+    background-color: var(--button-color);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+div.to-top > a {
+    background-color: var(--button-color);
+    color: var(--alt-text);
+    text-decoration: none;
+    font-weight: 500;
+
+}
