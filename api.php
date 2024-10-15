@@ -2,7 +2,7 @@
 
 chdir('/home/n0x/git-repos/assignment1-comp3512-bushell/');
 require_once './includes/config.inc.php';
-
+require './includes/functions.inc.php';
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,18 @@ require_once './includes/config.inc.php';
 
         </aside>
         <article class="results">
-            
+           <a href="./api/circuits.php" class="api-link">placeholder</a>
+           <a href="./api/circuits.php?ref=?" class="api-link">placeholder</a>
+           <a href="./api/constructors.php" class="api-link">placeholder</a>
+           <a href="./api/constructors.php?ref=?" class="api-link">placeholder</a>
+           <a href="./api/drivers.php" class="api-link">placeholder</a>
+           <a href="./api/drivers.php?ref=?" class="api-link">placeholder</a>
+           <a href="./api/drivers.php?race=?" class="api-link">placeholder</a>
+           <a href="./api/races.php" class="api-link">placeholder</a>
+           <a href="./api/races.php?ref=?" class="api-link">placeholder</a>
+           <a href="./api/qualifying.php?ref=?" class="api-link">placeholder</a>
+           <a href="./api/results.php?ref=?" class="api-link">placeholder</a>
+           <a href="./api/results.php?driver=?" class="api-link">placeholder</a> 
         
         </article>
     </main>

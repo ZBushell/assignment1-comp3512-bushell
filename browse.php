@@ -2,7 +2,7 @@
 
 chdir('/home/n0x/git-repos/assignment1-comp3512-bushell/');
 require_once './includes/config.inc.php';
-
+require './includes/functions.inc.php';
 
 ?>
 
@@ -30,11 +30,22 @@ require_once './includes/config.inc.php';
         <main>
         <aside class="about">
             <h2>2022 Races</h2>
-
+            <?php
+                $sql = "SELECT * FROM drivers;";
+                $data = pdoQuery($pdo, $sql);
+                echo $data;
+            ?>
         </aside>
         <article class="results">
-            
-        
+            <?php
+                if(isset($_GET['race']) && $_GET['race'] != null){
+                    
+                }
+                else
+                {
+                    print("<h2>Please select a race</h2>");
+                }
+            ?>
         </article>
         </main>
         <?php 
