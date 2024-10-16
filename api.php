@@ -2,7 +2,6 @@
 
 chdir('/home/n0x/git-repos/assignment1-comp3512-bushell/');
 require_once './includes/config.inc.php';
-require './includes/functions.inc.php';
 
 ?>
 <!DOCTYPE html>

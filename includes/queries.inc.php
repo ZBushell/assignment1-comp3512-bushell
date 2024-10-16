@@ -32,7 +32,7 @@ $circuitsIn2022Query = "SELECT DISTINCT c.* FROM circuits c
 // Only one circuit
 $singleCircuitQuery = "SELECT DISTINCT c.* FROM circuits c 
                        LEFT JOIN races r ON c.circuitID = r.circuitID 
-                       WHERE r.year IN(2022) AND c.circuitRef IN('spa') 
+                       WHERE r.year IN(2022) AND c.circuitRef IN( ? ) 
                        ORDER BY r.date DESC;";
 
 // Driver with a specific race ID

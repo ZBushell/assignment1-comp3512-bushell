@@ -27,9 +27,9 @@ class F1Database {
     public function preparedQuery($sql, $params = []) {
         try {
             // Prepare, execute and fetch results
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute($params);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = $this->pdo->prepare($sql);
+            $result->execute($params);
+            return $result->fetchAll(PDO::FETCH_ASSOC);
         
         } catch (Exception $e) {
             // Handle error
