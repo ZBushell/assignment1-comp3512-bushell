@@ -11,7 +11,7 @@ if (isset($_GET['$driverId']) && $_GET['driverId'] != null){
     
     $args = $_GET['driverId'];
     $details = $db->preparedQuery($dvrDetails, $args);
-
+    $recentRaces = $db->preparedQuery($dvrRaces, $args);
     
 }
 else {
@@ -54,7 +54,26 @@ $age = $today->diff($details['dob']);
         </ul>
     </aside>
     <article class="results">
-
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Round</th>
+            <th>Circuit</th>
+            <th>Position</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+       
+        foreach ($recentRaces as $race) {
+            print( '<tr>');
+            print( '<td>' . $race['Name'] . '</td>');
+            print( '<td>' . $race['position'] . '</td>');
+            print( '<td>' . $race['points'] . '</td>');
+            print( '</tr>');
+        }
+        ?>
     </article>
 </main>
 <?php 

@@ -60,8 +60,8 @@ $db = new F1Database("./data/f1.db");
                     $qaliResults = $db->preparedQuery($browseQuali, $args); 
 
                     print('<div class="browse-results browse-qualifying">');
-                    print('<table border="1">');
-                    print('<tr><th>Position</th><th>Name</th><th>Team</th><th>Q1</th><th>Q2</th><th>Q3</th></tr>');
+                    print('<table class="table">');
+                    print('<thead><tr><th>Position</th><th>Name</th><th>Team</th><th>Q1</th><th>Q2</th><th>Q3</th></tr></thead>');
 
                     foreach ($qaliResults as $x => $result) {
                         print('<tr>');

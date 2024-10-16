@@ -79,5 +79,7 @@ $browseQuali = "SELECT CONCAT(d.forename, ' ', d.surname) AS 'Name', c.name AS T
 
 $dvrDetails = "SELECT * from drivers WHERE driverId = ? ;";
 
+$dvrRaces = "SELECT r.* , c.name as 'Name' from results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON r.raceId = c.raceId WHERE c.year IN(2022) AND d.driverId = ? ;";
+
 
 ?>
