@@ -1,4 +1,6 @@
 <?php
+/* api queries */
+
 // Drivers in 2022
 $driversIn2022 = "SELECT DISTINCT d.* FROM drivers d 
                         LEFT JOIN qualifying q ON d.driverId = q.driverId 
@@ -68,5 +70,11 @@ $resultsForSpecificRace = "SELECT d.driverRef, d.code, d.forename, d.surname,
 $resultsForGivenDriver = "SELECT r.* FROM results r 
                                LEFT JOIN drivers d ON r.driverID = d.driverID 
                                WHERE d.driverRef IN ( ? );";
+
+
+/* non API queries */
+
+$browseQuali = "SELECT CONCAT(d.forename, ' ', d.surname) AS 'Name', c.name AS Team, q.q1 AS Q1, q.q2 AS Q2, q.q3 AS Q3 FROM qualifying q LEFT JOIN drivers d ON q.driverId = d.driverId LEFT JOIN constructors c ON q.constructorId = c.constructorId LEFT JOIN races r ON r.raceId = q.raceId WHERE r.raceId IN( ? ) ORDER BY (q.q1 + q.q2 + q.q3) / 3 ASC;";
+
 
 ?>
