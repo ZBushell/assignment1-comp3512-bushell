@@ -31,9 +31,7 @@ require './includes/functions.inc.php';
         <aside class="about">
             <h2>2022 Races</h2>
             <?php
-                $sql = "SELECT * FROM drivers;";
-                $data = pdoQuery($pdo, $sql);
-                echo $data;
+                
             ?>
         </aside>
         <article class="results">

@@ -1,16 +1,58 @@
 <?php
 
-try {
-    // Create (connect to) SQLite database in file
-    $pdo = new PDO('sqlite:./data/f1.db');
+class F1Database {
+    private $pdo;
 
-    // Set error mode to exception
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public function __construct($dbFile) {
+        try {
+            $this->pdo = new PDO('sqlite:' . $dbFile);
+            // Set error mode to exception
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (Exception $e) {
+            echo "<h1>Connection failed: " . $e->getMessage() . "</h1>";
+        }
+    }
 
-   
-} catch (Exception $e) {
-    echo "<h1>Connection failed: " . $e->getMessage() . "</h1>";
+    // Method to get the PDO instance
+    public function getConnection() {
+        return $this->pdo;
+    }
+
+    // drops connection
+    public function dropConnection(){
+        $this->pdo = null;
+    }
+
+    // Prepared query method
+    public function preparedQuery($sql, $params = []) {
+        try {
+            // Prepare, execute and fetch results
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        } catch (Exception $e) {
+            // Handle error
+            die("Query failed: " . $e->getMessage());
+        }
+    }
+
+    // PDO query method
+    public function pdoQuery($sql) {
+        try {
+            //query with sql arg
+            $result = $this->pdo->query($sql);
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        
+        } catch (Exception $e) {
+            // Handle error
+            die("Query Failed: " . $e->getMessage());
+        }
+    }
+    
 }
+
 ?>
+
 
 
