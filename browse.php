@@ -33,23 +33,31 @@ $db = new F1Database("./data/f1.db");
         <main>
         <aside class="about">
             <h2>2022 Races</h2>
-            <?php
-                $races = $db->pdoQuery($racesIn2022);
-                
-                print ("<ul>");
-                foreach($races as $i){
-                    print("<li>" .$i['name'].'<a href="browse.php?ref='.$i['raceId'].'" class="browse-link">Results</a></li>');
+        <?php
+            $races = $db->pdoQuery($racesIn2022);
 
-                }
-                print ("</ul>");
-
-            ?>
+            print('<form action="browse.php" method="GET">');
+            print("<ul>");
+            foreach ($races as $i) {
+                print('<li>');
+                print('<label>');
+                print('<input type="radio" name="raceId" value="' . $i['raceId'] . '" required> ' . $i['name']);
+                print('</label>');
+                print('</li>');
+            }
+            print("</ul>");
+            print('<button type="submit">Submit</button>');
+            print('</form>');
+            
+        ?>
         </aside>
         <article class="results">
             <?php
-                if(isset($_GET['ref']) && $_GET['ref'] != null){
+                
+                if(isset($_GET['raceId']) && $_GET['raceId'] != null){
                     
-                    $qaliResults = $db->preparedQuery($browseQuali, $_GET['ref']);
+                    $args = [$_GET['raceId']];
+                    $qaliResults = $db->preparedQuery($browseQuali, $args); 
 
                     print('<div class="browse-results browse-qualifying">');
                     print('<table border="1">');
@@ -58,22 +66,23 @@ $db = new F1Database("./data/f1.db");
                     foreach ($qaliResults as $x => $result) {
                         print('<tr>');
                         print('<td>' . $x . '</td>');
-                        print('<td>' . htmlspecialchars($result['name']) . '</td>');
-                        print('<td>' . htmlspecialchars($result['constructor']) . '</td>');
-                        print('<td>' . htmlspecialchars($result['q1']) . '</td>');
-                        print('<td>' . htmlspecialchars($result['q2']) . '</td>');
-                        print('<td>' . htmlspecialchars($result['q3']) . '</td>');
+                        print('<td>' . $result['Name']) . '</td>';
+                        print('<td>' . $result['Team']) . '</td>';
+                        print('<td>' . $result['Q1']) . '</td>';
+                        print('<td>' . $result['Q2']) . '</td>';
+                        print('<td>' . $result['Q3']) . '</td>';
                         print('</tr>');
                     }
 
                     print('</table>');
                     print('</div>');
                     
-
+        
                 }
                 elseif (!isset($_GET['ref']) || $_GET['ref'] == null) {
                     print('<div class="select-a-race"><b>Select a race to view the results</b></div>');
                 }
+                $db->dropConnection();
             ?>
         </article>
         </main>
