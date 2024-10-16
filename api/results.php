@@ -16,12 +16,16 @@
     // check if we're returning everything or just one circuit
     if(isset($_GET['ref']) && $_GET['ref'] != null){
 
-        $queryResults = $db->preparedQuery($singleCircuitQuery, $_GET['ref']);
+        $queryResults = $db->preparedQuery($resultsForSpecificRace, $_GET['ref']);
     }
-    else {
+    else if(isset($_GET['driver']) && $_GET['driver'] != null) {
         
-        $queryResults = $db->pdoQuery($circuitsIn2022Query);
+        $queryResults = $db->preparedQuery($resultsForSpecificRace, $_GET['driver']);
     } 
+    else 
+    {
+        $queryResults = null;
+    }
 
     //close db session
     $db->dropConnection();

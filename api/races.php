@@ -16,11 +16,11 @@
     // check if we're returning everything or just one circuit
     if(isset($_GET['ref']) && $_GET['ref'] != null){
 
-        $queryResults = $db->preparedQuery($singleCircuitQuery, $_GET['ref']);
+        $queryResults = $db->preparedQuery($specificRace, $_GET['ref']);
     }
     else {
         
-        $queryResults = $db->pdoQuery($circuitsIn2022Query);
+        $queryResults = $db->pdoQuery($racesIn2022);
     } 
 
     //close db session

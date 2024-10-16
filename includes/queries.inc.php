@@ -51,7 +51,7 @@ $specificRace = "SELECT r.name, c.name, c.location, c.country
                       FROM races r 
                       LEFT JOIN results re ON r.raceId = re.raceId 
                       LEFT JOIN circuits c ON r.circuitID = c.circuitId 
-                      WHERE r.raceId IN (1106);";
+                      WHERE r.raceId IN ( ? );";
 
 // Results for a specific race
 $resultsForSpecificRace = "SELECT d.driverRef, d.code, d.forename, d.surname, 

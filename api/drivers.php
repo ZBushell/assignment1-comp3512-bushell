@@ -18,8 +18,12 @@
 
         $queryResults = $db->preparedQuery($specificDriverIn2022, $_GET['ref']);
     }
-    else {
+    else if(isset($_GET['race']) && $_GET['race'] != null) {
         
+        $queryResults = $db->preparedQuery($driverWithSpecificRaceId , $_GET['race']);
+        
+    }
+    else {
         $queryResults = $db->pdoQuery($driversIn2022);
     } 
 
