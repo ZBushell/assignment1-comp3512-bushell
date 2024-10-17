@@ -37,6 +37,7 @@ require_once "./includes/config.inc.php";
             <p>
             This page is a php excersize for a web development course I'm taking at Mount Royal University in the Fall Semester of 2024. Specifically,  COMP3512 Assignment 1. It pulls the results of the 2022 f1 season from an sqlite3 database and displays the results in various different ways. It offers a Restful API which can be found in the API section of the website. It exports in json format.
             </p>
+            <p>Github Repo can be found <a href"https://github.com/ZBushell/assignment1-comp3512-bushell">here</a></p>
             <h3>Disclaimer</h3>
             <p>This website may or may not be programmed to only return Max Verstappen in his rightful position, first. Any #TeamLewis fans still crying over 2021 can kindly leave. So keep raging that Mercedes can't compete, internalize the fact that you belong below Williams, and realize Adrian Newey and his cars are the greatest thing since sliced bread.</p>
             <div class="nav-buttons"><a href="./browse.php">Browse 2022 Season</a></div>
