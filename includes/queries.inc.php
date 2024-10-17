@@ -76,6 +76,8 @@ $resultsForGivenDriver = "SELECT r.* FROM results r
 
 $browseQuali = "SELECT CONCAT(d.forename, ' ', d.surname) AS 'Name', c.name AS Team, q.q1 AS Q1, q.q2 AS Q2, q.q3 AS Q3 FROM qualifying q LEFT JOIN drivers d ON q.driverId = d.driverId LEFT JOIN constructors c ON q.constructorId = c.constructorId LEFT JOIN races r ON r.raceId = q.raceId WHERE r.raceId IN( ? ) ORDER BY q.q3 ASC;";
 
+$browseRace = "SELECT r.*, CONCAT(d.forename, ' ', d.surname) AS 'Name', x.name AS 'Team' FROM results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON c.raceId = r.raceId LEFT JOIN constructors x ON x.constructorId = r.constructorId WHERE c.year = 2022 AND c.raceId IN (?) ORDER BY r.position;";
+
 
 $dvrDetails = "SELECT * from drivers WHERE driverId = ? ;";
 

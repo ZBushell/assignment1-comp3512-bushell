@@ -1,5 +1,6 @@
 <?php
 
+//database object refactored
 class F1Database {
     private $pdo;
 

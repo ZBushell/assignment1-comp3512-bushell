@@ -17,6 +17,7 @@ require_once './includes/config.inc.php';
 <body>
     <?php 
             try {
+            //header
 
                 require './includes/header.inc.php';
 
@@ -27,7 +28,7 @@ require_once './includes/config.inc.php';
     <main>
         <aside class="about">
             <h2>2022 Races</h2>
-
+            <p> Note that the apis require manual inputting of the query string value. If you just click on them, your browser will not render the content. This is meant to export json data, not display a page.</p>
         </aside>
         <article class="results">
            <a href="./api/circuits.php" class="api-link">All Circuits</a>
@@ -46,6 +47,7 @@ require_once './includes/config.inc.php';
         </article>
     </main>
     <?php 
+    //footer
             try {
 
                 require './includes/footer.inc.php';

@@ -18,6 +18,7 @@ $db = new F1Database("./data/f1.db");
 
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/browse.css">
     <title>Browse</title>
 </head>
 <body>
@@ -35,7 +36,7 @@ $db = new F1Database("./data/f1.db");
             <h2>2022 Races</h2>
         <?php
             $races = $db->pdoQuery($racesIn2022);
-
+            //print all of the races for 2022
             print('<form action="browse.php" method="GET">');
             print("<ul>");
             foreach ($races as $i) {
@@ -58,16 +59,17 @@ $db = new F1Database("./data/f1.db");
                     
                     $args = [$_GET['raceId']];
                     $qaliResults = $db->preparedQuery($browseQuali, $args); 
+                    $gridResults = $db->preparedQuery($browseRace,$args);
 
                     print('<div class="browse-results browse-qualifying">');
                     print('<table class="table">');
                     print('<thead><tr><th>Position</th><th>Name</th><th>Team</th><th>Q1</th><th>Q2</th><th>Q3</th></tr></thead>');
-
+                    //print out qualifying table
                     foreach ($qaliResults as $x => $result) {
                         print('<tr>');
-                        print('<td>' . $x . '</td>');
-                        print('<td>' . $result['Name']) . '</td>';
-                        print('<td>' . $result['Team']) . '</td>';
+                        print('<td>' . $x +1 . '</td>');
+                        print('<td><a href="driver.php?driverId=' . $result['driverId'] . '">' . $result['Name'] . '</a></td>');
+                        print('<td><a href="constructor.php?constructorId=' . $result['constructorId'] . '">' . $result['Team'] . '</a></td>');
                         print('<td>' . $result['Q1']) . '</td>';
                         print('<td>' . $result['Q2']) . '</td>';
                         print('<td>' . $result['Q3']) . '</td>';
@@ -75,9 +77,22 @@ $db = new F1Database("./data/f1.db");
                     }
 
                     print('</table>');
+                    print('<div class="browse-results browse-grid">');
+                    print('<table class="table">');
+                    print('<thead><tr><th>Position</th><th>Name</th><th>Team</th><th>Laps</th><th>Pts</th></tr></thead>');
+                    //print out results table
+                    foreach ($gridResults as $x => $result) {
+                        print('<tr>');
+                        print('<td>' . $result['position']. '</td>'); 
+                        print('<td>' . $result['Name']. '</td>');
+                        print('<td>' . $result['Team']. '</td>');
+                        print('<td>' . $result['laps']. '</td>');
+                        print('<td>' . $result['points'] . '</td>');
+                        print('</tr>');
+                    }
+
+                    print('</table>');
                     print('</div>');
-                    
-        
                 }
                 elseif (!isset($_GET['ref']) || $_GET['ref'] == null) {
                     print('<div class="select-a-race"><b>Select a race to view the results</b></div>');
