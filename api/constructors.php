@@ -1,6 +1,6 @@
 <?php
     //been having issues with pathing on my php install. this is here to fix that.
-    chdir("../");
+chdir('/home/n0x/git-repos/assignment1-comp3512-bushell/');
     //sql queries and dababase object
     require_once "./includes/config.inc.php";
     require "./includes/queries.inc.php";

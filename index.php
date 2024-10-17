@@ -26,15 +26,19 @@ require_once "./includes/config.inc.php";
             require './includes/header.inc.php';
 
         }catch (Exception $e){
-
+            throw $e;
+            //lazy, yes i know
         }
     ?>
 
     <main>
         <aside class="about">
+            <h3>About</h3>
             <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit neque ad unde dolorem ea aliquid dignissimos culpa, adipisci deserunt rem ratione itaque incidunt quis alias ipsum voluptatibus ipsa, sint voluptates.
+            This page is a php excersize for a web development course I'm taking at Mount Royal University in the Fall Semester of 2024. It pulls the results of the 2022 f1 season from an sqlite3 database and displays the results in various different ways. It offers a Restful API which can be found in the API section of the website. It exports in json format.
             </p>
+            <h3>Disclaimer</h3>
+            <p>This website may or may not be programmed to only return Max Verstappen in his rightful position, first. Any #TeamLewis fans still crying over 2021 can kindly leave. So keep raging that Mercedes can't compete, internalize the fact that you belong below Williams, and realize Adrian Newey and his cars are the greatest thing since sliced bread.</p>
             <div class="nav-buttons"><a href="./browse.php">Browse 2022 Season</a></div>
         </aside>
         <article class="results">
@@ -49,7 +53,7 @@ require_once "./includes/config.inc.php";
             require './includes/footer.inc.php';
 
         }catch (Exception $e){
-
+            throw $e;
         }
     ?>
 

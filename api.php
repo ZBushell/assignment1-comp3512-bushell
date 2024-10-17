@@ -30,18 +30,18 @@ require_once './includes/config.inc.php';
 
         </aside>
         <article class="results">
-           <a href="./api/circuits.php" class="api-link">placeholder</a>
-           <a href="./api/circuits.php?ref=?" class="api-link">placeholder</a>
-           <a href="./api/constructors.php" class="api-link">placeholder</a>
-           <a href="./api/constructors.php?ref=?" class="api-link">placeholder</a>
-           <a href="./api/drivers.php" class="api-link">placeholder</a>
-           <a href="./api/drivers.php?ref=?" class="api-link">placeholder</a>
-           <a href="./api/drivers.php?race=?" class="api-link">placeholder</a>
-           <a href="./api/races.php" class="api-link">placeholder</a>
-           <a href="./api/races.php?ref=?" class="api-link">placeholder</a>
-           <a href="./api/qualifying.php?ref=?" class="api-link">placeholder</a>
-           <a href="./api/results.php?ref=?" class="api-link">placeholder</a>
-           <a href="./api/results.php?driver=?" class="api-link">placeholder</a> 
+           <a href="./api/circuits.php" class="api-link">All Circuits</a>
+           <a href="./api/circuits.php?ref=?" class="api-link">Specific Circuit</a>
+           <a href="./api/constructors.php" class="api-link">All Constructors</a>
+           <a href="./api/constructors.php?ref=?" class="api-link">Specific Constructor</a>
+           <a href="./api/drivers.php" class="api-link">All Drivers</a>
+           <a href="./api/drivers.php?ref=?" class="api-link">Specific Driver</a>
+           <a href="./api/drivers.php?race=?" class="api-link">Driver Specific Race</a>
+           <a href="./api/races.php" class="api-link">All Races</a>
+           <a href="./api/races.php?ref=?" class="api-link">Specific Race</a>
+           <a href="./api/qualifying.php?ref=?" class="api-link">All Qualifying</a>
+           <a href="./api/results.php?ref=?" class="api-link">All Results</a>
+           <a href="./api/results.php?driver=?" class="api-link">Sepcific Results</a> 
         
         </article>
     </main>
