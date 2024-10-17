@@ -81,5 +81,10 @@ $dvrDetails = "SELECT * from drivers WHERE driverId = ? ;";
 
 $dvrRaces = "SELECT r.* , c.name as 'Name' from results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON r.raceId = c.raceId WHERE c.year IN(2022) AND d.driverId = ? ;";
 
+$ctrDetails = "SELECT * FROM constructors WHERE constructorId = ?";
+
+$ctrRaces = "SELECT r.* , CONCAT(d.forename, ' ', d.surname) AS 'Driver' FROM results r LEFT JOIN qualifying q ON r.driverId = q.driverId LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN constructors c ON r.constructorId = c.constructorId LEFT JOIN races c ON c.raceId = r.raceId WHERE c.year = 2022 AND r.constructorId = ?; ";
+
+
 
 ?>
