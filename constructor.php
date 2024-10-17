@@ -1,15 +1,16 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-chdir('/home/n0x/git-repos/assignment1-comp3512-bushell/');
 require_once './includes/config.inc.php';
 require './includes/queries.inc.php';
 
 $db = new F1Database("./data/f1.db");
 
 
-if (isset($_GET['$driverId']) && $_GET['driverId'] != null){
+if (isset($_GET['constructorId']) && $_GET['constructorId'] != null){
     
-    $args = $_GET['constructorId'];
+    $args = [$_GET['constructorId']];
     $details = $db->preparedQuery($ctrDetails, $args);
     $recentRaces = $db->preparedQuery($ctrRaces, $args);
     
@@ -29,7 +30,8 @@ else {
 
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/index.css">
-    <title><?php print($details['Name']); ?></title>
+    <link rel="stylesheet" href="./css/browse.css">
+    <title><?php print($details['name']); ?></title>
 </head>
 <body>
 <?php 
@@ -83,9 +85,6 @@ else {
 
             }
 ?>
-
-
-
     
 </body>
 </html>

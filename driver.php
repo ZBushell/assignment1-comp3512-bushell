@@ -1,6 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-chdir('/home/n0x/git-repos/assignment1-comp3512-bushell/');
 require_once './includes/config.inc.php';
 require './includes/queries.inc.php';
 
@@ -9,7 +10,7 @@ $db = new F1Database("./data/f1.db");
 
 if (isset($_GET['$driverId']) && $_GET['driverId'] != null){
     
-    $args = $_GET['driverId'];
+    $args = [$_GET['driverId']];
     $details = $db->preparedQuery($dvrDetails, $args);
     $recentRaces = $db->preparedQuery($dvrRaces, $args);
     
@@ -31,6 +32,7 @@ $age = $today->diff($details['dob']);
 
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/browse.css">
     <title><?php print($details['forename'] .' '. $details['surname']); ?></title>
 </head>
 <body>

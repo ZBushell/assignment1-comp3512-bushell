@@ -135,3 +135,15 @@ div.to-top > a {
     width: 150px;
     height: 100px;
 }
+
+a {
+    text-decoration: none;
+    font-style: normal;
+    color: var(--main-text);
+}
+a:hover {
+    color: var(--alt-text);
+}
+ul {
+    list-style-type: none;
+}
