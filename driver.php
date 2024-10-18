@@ -10,22 +10,19 @@ $db = new F1Database("./data/f1.db");
 
 if (isset($_GET['$driverId']) && $_GET['driverId'] != null){
     
+    //pull driver stuff
     $args = [$_GET['driverId']];
     $details = $db->preparedQuery($dvrDetails, $args);
     $recentRaces = $db->preparedQuery($dvrRaces, $args);
+   
     
+    //get driver's age
+    $today = new DateTime('today');
+    $dvrDob = new DateTime($details[0]['dob']);
+    $dvrAge= $today->diff($dvrDob);
+
+ 
 }
-else {
-
-}
-$recentRaces = $db->pdoQuery($dvrRaces);
-$details = $db->pdoQuery($dvrDetails);
-
-//find driver age
-$today = new DateTime('today');
-$dvrDob = new DateTime($details[0]['dob']);
-$dvrAge= $today->diff($dvrDob);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
