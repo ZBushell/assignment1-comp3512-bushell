@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
+chdir("/home/n0x/git-repos/assignment1-comp3512-bushell/");
 require_once './includes/config.inc.php';
 require './includes/queries.inc.php';
 
@@ -18,10 +18,11 @@ if (isset($_GET['$driverId']) && $_GET['driverId'] != null){
 else {
 
 }
+$details = $db->pdoQuery($dvrDetails);
 
-$today = date('YYYY-MM-DD');
-$age = $today->diff($details['dob']);
-
+foreach ($details as $d) {
+    print_r("<h1>".$d['forename']."</h1>");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,13 +34,13 @@ $age = $today->diff($details['dob']);
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/browse.css">
-    <title><?php print($details['forename'] .' '. $details['surname']); ?></title>
+    <title><?php #print($details['forename'] .' '. $details['surname']); ?></title>
 </head>
 <body>
 <?php 
             try {
 
-                require './includes/header.inc.php';
+                //require './includes/header.inc.php';
 
             }catch (Exception $e){
 
@@ -48,11 +49,16 @@ $age = $today->diff($details['dob']);
 <main>
     <aside class="about">
         <ul class="driver-info">
-            <li class="driver"><?php print ($details['forename'] ); ?></li>
-            <li class="driver"><?php print ($details['number'] ); ?></li>
-            <li class="driver"><?php print ($details['dob'] ."  (". $age .")" ); ?></li>
-            <li class="driver"><?php print ($details['nationality'] ); ?></li>
-            <li class="driver"><?php print ($details['url'] ); ?></li>
+            <?php
+                foreach ($details as $x => $d){
+                    print("<li>Name: <span>".$d['forename']." ".$d['surname'] ."</span></li>");
+                    print("<li>DoB: <span>".$d['dob']."</span></li>");
+                    print("<li>Nationality: <span>".$d['nationality']."</span></li>");
+                    print('<li>Wikipedia: <a href="'.$d['url'].'">'. '<span>'.$d['forename']." ".$d['surname'] .'</a></span></li>');
+                    print("<li> Name: <span>".$d['forename']."</span></li>");
+                }
+
+            ?>
         </ul>
     </aside>
     <article class="results">
@@ -68,20 +74,20 @@ $age = $today->diff($details['dob']);
     <tbody>
         <?php
        
-        foreach ($recentRaces as $race) {
-            print( '<tr>');
-            print( '<td>' . $race['Name'] . '</td>');
-            print( '<td>' . $race['position'] . '</td>');
-            print( '<td>' . $race['points'] . '</td>');
-            print( '</tr>');
-        }
+        // foreach ($recentRaces as $race) {
+            // print( '<tr>');
+            // print( '<td>' . $race['Name'] . '</td>');
+            // print( '<td>' . $race['position'] . '</td>');
+            // print( '<td>' . $race['points'] . '</td>');
+            // print( '</tr>');
+        // }
         ?>
     </article>
 </main>
 <?php 
             try {
 
-                require './includes/footer.inc.php';
+                //require './includes/footer.inc.php';
 
             }catch (Exception $e){
 
