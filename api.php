@@ -14,17 +14,11 @@ require_once './includes/config.inc.php';
     <link rel="stylesheet" href="./css/index.css">
     <title>APIs</title>
 </head>
+<?php   try{require_once "./includes/header.inc.php";}
+        catch(Exception $e){print("Header not Found");} 
+?>
 <body>
-    <?php 
-            try {
-            //header
-
-                require './includes/header.inc.php';
-
-            }catch (Exception $e){
-
-            }
-        ?>
+    
     <main>
         <aside class="about">
             <h2>2022 Races</h2>
@@ -46,16 +40,10 @@ require_once './includes/config.inc.php';
         
         </article>
     </main>
-    <?php 
-    //footer
-            try {
-
-                require './includes/footer.inc.php';
-
-            }catch (Exception $e){
-
-            }
-        ?>
+    
     
 </body>
+<?php   try{require_once "./includes/footer.inc.php";}
+        catch(Exception $e){print("Footer not Found");} 
+?>
 </html>

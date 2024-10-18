@@ -47,7 +47,9 @@ div.nav-buttons > a{
     text-decoration: none;
     font-weight: 500;
 }
-
+.copyright{
+    color: var(--header-text);
+}
 
 
 /* HTML Body */

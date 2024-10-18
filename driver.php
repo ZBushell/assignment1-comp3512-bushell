@@ -18,11 +18,14 @@ if (isset($_GET['$driverId']) && $_GET['driverId'] != null){
 else {
 
 }
+$recentRaces = $db->pdoQuery($dvrRaces);
 $details = $db->pdoQuery($dvrDetails);
 
-foreach ($details as $d) {
-    print_r("<h1>".$d['forename']."</h1>");
-}
+//find driver age
+$today = new DateTime('today');
+$dvrDob = new DateTime($details[0]['dob']);
+$dvrAge= $today->diff($dvrDob);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,28 +37,23 @@ foreach ($details as $d) {
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/browse.css">
-    <title><?php #print($details['forename'] .' '. $details['surname']); ?></title>
+    <title><?php print($details[0]['forename'] .' '. $details[0]['surname']); ?></title>
 </head>
-<body>
 <?php 
-            try {
-
-                //require './includes/header.inc.php';
-
-            }catch (Exception $e){
-
-            }
+            try {require_once './includes/header.inc.php';}
+            catch (Exception $e){print("Header not Found");}
 ?>
+<body>
+
 <main>
     <aside class="about">
         <ul class="driver-info">
             <?php
                 foreach ($details as $x => $d){
                     print("<li>Name: <span>".$d['forename']." ".$d['surname'] ."</span></li>");
-                    print("<li>DoB: <span>".$d['dob']."</span></li>");
+                    print("<li>DoB: <span>".$d['dob']."</span><span>(".$dvrAge->y.")</span></li>");
                     print("<li>Nationality: <span>".$d['nationality']."</span></li>");
                     print('<li>Wikipedia: <a href="'.$d['url'].'">'. '<span>'.$d['forename']." ".$d['surname'] .'</a></span></li>');
-                    print("<li> Name: <span>".$d['forename']."</span></li>");
                 }
 
             ?>
@@ -74,28 +72,20 @@ foreach ($details as $d) {
     <tbody>
         <?php
        
-        // foreach ($recentRaces as $race) {
-            // print( '<tr>');
-            // print( '<td>' . $race['Name'] . '</td>');
-            // print( '<td>' . $race['position'] . '</td>');
-            // print( '<td>' . $race['points'] . '</td>');
-            // print( '</tr>');
-        // }
+         foreach ($recentRaces as $race) {
+            print( '<tr>');
+            print('<td>' . $race['round'] . '</td>');
+            print( '<td>' . $race['Name'] . '</td>');
+            print( '<td>' . $race['position'] . '</td>');
+            print( '<td>' . $race['points'] . '</td>');
+            print( '</tr>');
+        }
         ?>
+    </thbody>
+    </table>
     </article>
 </main>
-<?php 
-            try {
-
-                //require './includes/footer.inc.php';
-
-            }catch (Exception $e){
-
-            }
-?>
-
-
-
-    
 </body>
+<?php   try{require_once "./includes/footer.inc.php";}
+        catch(Exception $e){print("Footer not Found");} ?>
 </html>

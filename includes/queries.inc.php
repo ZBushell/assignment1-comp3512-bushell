@@ -81,9 +81,9 @@ $browseQuali = "SELECT CONCAT(d.forename, ' ', d.surname) AS 'Name', c.name AS T
 $browseRace = "SELECT r.*, CONCAT(d.forename, ' ', d.surname) AS 'Name', x.name AS 'Team' FROM results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON c.raceId = r.raceId LEFT JOIN constructors x ON x.constructorId = r.constructorId WHERE c.year = 2022 AND c.raceId IN (?) ORDER BY r.position;";
 
 
-$dvrDetails = "SELECT * from drivers WHERE driverId = 33 ;";
+$dvrDetails = "SELECT * from drivers WHERE driverId = 1 ;";
 
-$dvrRaces = "SELECT r.* , c.name as 'Name' from results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON r.raceId = c.raceId WHERE c.year IN(2022) AND d.driverId = ? ;";
+$dvrRaces = "SELECT c.round AS 'round', r.* , c.name as 'Name' from results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON r.raceId = c.raceId WHERE c.year IN(2022) AND d.driverId = 1 ORDER BY c.round ASC;";
 
 $ctrDetails = "SELECT * FROM constructors WHERE constructorId = ?";
 

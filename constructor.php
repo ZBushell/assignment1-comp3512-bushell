@@ -33,16 +33,11 @@ else {
     <link rel="stylesheet" href="./css/browse.css">
     <title><?php print($details['name']); ?></title>
 </head>
-<body>
-<?php 
-            try {
 
-                require './includes/header.inc.php';
-
-            }catch (Exception $e){
-
-            }
+<?php   try{require_once "./includes/header.inc.php";}
+        catch(Exception $e){print("Header not Found");} 
 ?>
+<body>
 <main>
     <aside class="about">
         <ul class="driver-info">
@@ -76,15 +71,8 @@ else {
         ?>
     </article>
 </main>
-<?php 
-            try {
-
-                require './includes/footer.inc.php';
-
-            }catch (Exception $e){
-
-            }
-?>
-    
 </body>
+<?php   try{require_once "./includes/footer.inc.php";}
+        catch(Exception $e){print("Footer not Found");} 
+?>
 </html>

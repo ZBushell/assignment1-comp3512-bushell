@@ -21,16 +21,10 @@ $db = new F1Database("./data/f1.db");
     <link rel="stylesheet" href="./css/browse.css">
     <title>Browse</title>
 </head>
+<?php   try{require_once "./includes/header.inc.php";}
+        catch(Exception $e){print("Header not Found");} 
+?>
 <body>
-        <?php 
-            try {
-
-                require './includes/header.inc.php';
-
-            }catch (Exception $e){
-
-            }
-        ?>
         <main>
         <aside class="about">
             <h2>2022 Races</h2>
@@ -101,14 +95,9 @@ $db = new F1Database("./data/f1.db");
             ?>
         </article>
         </main>
-        <?php 
-            try {
-
-                require './includes/footer.inc.php';
-
-            }catch (Exception $e){
-
-            }
-        ?>    
+           
 </body>
+<?php   try{require_once "./includes/footer.inc.php";}
+        catch(Exception $e){print("Footer not Found");} 
+?>
 </html>
