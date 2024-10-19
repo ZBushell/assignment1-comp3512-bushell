@@ -16,10 +16,12 @@
     // check if we're returning everything or just one circuit
     if(isset($_GET['ref']) && $_GET['ref'] != null){
 
+        $args = [$_GET['ref']];
         $queryResults = $db->preparedQuery($specificDriverIn2022, [$_GET['ref']]);
     }
     else if(isset($_GET['race']) && $_GET['race'] != null) {
         
+        $args = [$_GET['race']];
         $queryResults = $db->preparedQuery($driverWithSpecificRaceId , [$_GET['race']]);
         
     }

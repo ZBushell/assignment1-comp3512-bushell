@@ -14,8 +14,8 @@
     
     // check if we're returning everything or just one circuit
     if(isset($_GET['ref']) && $_GET['ref'] != null){
-
-        $queryResults = $db->preparedQuery($specificConstructorIn2022, [$_GET['ref']]);
+        $args = [$_GET['ref']];
+        $queryResults = $db->preparedQuery($specificConstructorIn2022, $args);
     }
     else {
         

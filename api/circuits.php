@@ -15,7 +15,8 @@ $queryResults = [];
 
 // Check if we're returning everything or just one circuit
 if (isset($_GET['ref']) && $_GET['ref'] != null) {
-    $queryResults = $db->preparedQuery($singleCircuit, [$_GET['ref']]);
+    $args = [$_GET['ref']];
+    $queryResults = $db->preparedQuery($singleCircuit, $args);
 } else {
     $queryResults = $db->pdoQuery($circuitsIn2022);
 }

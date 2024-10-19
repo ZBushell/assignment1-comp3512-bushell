@@ -11,15 +11,18 @@
     //variables 
     $db = new F1Database("../data/f1.db");
     $queryResults = [];
+    $args = [];
     
     // check if we're returning everything or just one circuit
     if(isset($_GET['ref']) && $_GET['ref'] != null){
-
-        $queryResults = $db->preparedQuery($resultsForSpecificRace, [$_GET['ref']]);
+        
+        $args = [$_GET['ref']];
+        $queryResults = $db->preparedQuery($resultsForSpecificRace, $args);
     }
     else if(isset($_GET['driver']) && $_GET['driver'] != null) {
         
-        $queryResults = $db->preparedQuery($resultsForGivenDriver, [$_GET['driver']]);
+        $args = [$_GET['ref']];
+        $queryResults = $db->preparedQuery($resultsForGivenDriver, $args);
     } 
     else 
     {
