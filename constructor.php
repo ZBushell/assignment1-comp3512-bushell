@@ -69,6 +69,8 @@ else {
             print( '</tr>');
         }
         ?>
+    </tbody>
+    </table>
     </article>
 </main>
 </body>
