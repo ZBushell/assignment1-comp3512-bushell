@@ -5,52 +5,56 @@
 $driversIn2022 = "SELECT DISTINCT d.* FROM drivers d LEFT JOIN qualifying q ON d.driverId = q.driverId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022);";
 
 // Specific driver in 2022
-$specificDriverIn2022 = "SELECT DISTINCT d.* FROM drivers d LEFT JOIN qualifying q ON d.driverId = q.driverId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022) AND d.driverRef IN( ? );";
+$specificDriverIn2022 = "SELECT DISTINCT d.* FROM drivers d LEFT JOIN qualifying q ON d.driverId = q.driverId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022) AND d.driverRef = ? ;";
 
 // Constructors in 2022
 $constructorsIn2022 = "SELECT DISTINCT c.* FROM constructors c LEFT JOIN qualifying q ON c.constructorId = q.constructorId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022);";
 
 // Specific constructor from 2022
-$specificConstructorIn2022 = "SELECT DISTINCT c.* FROM constructors c LEFT JOIN qualifying q ON c.constructorId = q.constructorId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022) AND c.constructorRef IN( ? );";
+$specificConstructorIn2022 = "SELECT DISTINCT c.* FROM constructors c LEFT JOIN qualifying q ON c.constructorId = q.constructorId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022) AND c.constructorRef = ? ;";
 
 // Circuits in 2022
 $circuitsIn2022 = "SELECT DISTINCT c.* FROM circuits c LEFT JOIN races r ON c.circuitID = r.circuitID WHERE r.year IN(2022) ORDER BY r.date DESC;";
 
 // Only one circuit
-$singleCircuit = "SELECT DISTINCT c.* FROM circuits c LEFT JOIN races r ON c.circuitID = r.circuitID WHERE r.year IN(2022) AND c.circuitRef IN( ? ) ORDER BY r.date DESC;";
+$singleCircuit = "SELECT DISTINCT c.* FROM circuits c LEFT JOIN races r ON c.circuitID = r.circuitID WHERE r.year IN(2022) AND c.circuitRef = ?  ORDER BY r.date DESC;";
 
 // Driver with a specific race ID
-$driverWithSpecificRaceId = "SELECT DISTINCT d.* FROM drivers d LEFT JOIN qualifying q ON d.driverId = q.driverId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022) AND r.raceId IN ( ? );";
+$driverWithSpecificRaceId = "SELECT DISTINCT d.* FROM drivers d LEFT JOIN qualifying q ON d.driverId = q.driverId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022) AND r.raceId = ? ;";
 
 // Races in 2022
 $racesIn2022 = "SELECT * FROM races r WHERE r.year IN(2022) ORDER BY round;";
 
 // Specific race
-$specificRace = "SELECT r.name, c.name, c.location, c.country FROM races r LEFT JOIN results re ON r.raceId = re.raceId LEFT JOIN circuits c ON r.circuitID = c.circuitId WHERE r.raceId IN ( ? );";
+$specificRace = "SELECT r.name, c.name, c.location, c.country FROM races r LEFT JOIN results re ON r.raceId = re.raceId LEFT JOIN circuits c ON r.circuitID = c.circuitId WHERE r.raceId = ? ;";
 
 // Results for a specific race
-$resultsForSpecificRace = "SELECT d.driverRef, d.code, d.forename, d.surname, ra.name, ra.round, ra.year, ra.date, c.name, c.constructorRef, c.nationality FROM drivers d LEFT JOIN results r ON d.driverID = r.driverID LEFT JOIN constructors s ON s.constructorId = r.constructorId LEFT JOIN races ra ON ra.raceId = r.raceId WHERE r.raceId IN ( ? ) ORDER BY r.grid ASC;";
+$resultsForSpecificRace = "SELECT d.driverRef, d.code, d.forename, d.surname, ra.name, ra.round, ra.year, ra.date, c.name, c.constructorRef, c.nationality FROM drivers d LEFT JOIN results r ON d.driverID = r.driverID LEFT JOIN constructors c ON c.constructorId = r.constructorId LEFT JOIN races ra ON ra.raceId = r.raceId WHERE r.raceId = ? ORDER BY r.grid ASC;";
+
 
 // Results for a given driver
-$resultsForGivenDriver = "SELECT r.* FROM results r LEFT JOIN drivers d ON r.driverID = d.driverID WHERE d.driverRef IN ( ? );";
+$resultsForGivenDriver = "SELECT r.* FROM results r LEFT JOIN drivers d ON r.driverID = d.driverID WHERE d.driverRef = ? ;";
 
+//2022 qualifying results
+$qualifying2022 = "SELECT * FROM qualifying q LEFT JOIN races c ON q.raceId = c.raceId WHERE c.year = 2022 AND c.raceId = ?;";
 
 /* non API queries */
 
-$browseQuali = "SELECT CONCAT(d.forename, ' ', d.surname) AS 'Name', c.name AS Team, q.q1 AS Q1, q.q2 AS Q2, q.q3 AS Q3, c.constructorId, d.driverId FROM qualifying q LEFT JOIN drivers d ON q.driverId = d.driverId LEFT JOIN constructors c ON q.constructorId = c.constructorId LEFT JOIN races r ON r.raceId = q.raceId WHERE r.raceId IN( ? ) ORDER BY CASE WHEN q.q3 IS NULL THEN 1 ELSE 0 END, q.q3 ASC;";
+//browse qualifying
+$browseQuali = "SELECT q.position as 'pos', CONCAT(d.forename, ' ', d.surname) AS 'Name', c.name AS Team, q.q1 AS Q1, q.q2 AS Q2, q.q3 AS Q3, c.constructorId, d.driverId FROM qualifying q LEFT JOIN drivers d ON q.driverId = d.driverId LEFT JOIN constructors c ON q.constructorId = c.constructorId LEFT JOIN races r ON r.raceId = q.raceId WHERE r.raceId IN( ? ) ORDER BY q.position ASC ;";
 
+//return specific race results
+$browseRace = "SELECT r.*, CONCAT(d.forename, ' ', d.surname) AS 'Name', x.name AS 'Team' FROM results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON c.raceId = r.raceId LEFT JOIN constructors x ON x.constructorId = r.constructorId WHERE c.year = 2022 AND c.raceId = ? ORDER BY r.position;";
 
-
-$browseRace = "SELECT r.*, CONCAT(d.forename, ' ', d.surname) AS 'Name', x.name AS 'Team' FROM results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON c.raceId = r.raceId LEFT JOIN constructors x ON x.constructorId = r.constructorId WHERE c.year = 2022 AND c.raceId IN (?) ORDER BY r.position;";
-
-
+//driver details
 $dvrDetails = "SELECT * from drivers WHERE driverId = ? ;";
 
+//races in 2022 for x driver 
 $dvrRaces = "SELECT c.round AS 'round', r.* , c.name as 'Name' from results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON r.raceId = c.raceId WHERE c.year IN(2022) AND d.driverId = ? ORDER BY c.round ASC;";
 
+//constructor details
 $ctrDetails = "SELECT c.name as 'name', c.url as 'url', c.nationality as 'country' FROM constructors c WHERE constructorId = ?";
 
+//constructor race results 
 $ctrRaces = "SELECT DISTINCT rc.name as 'name', rc.round as 'round', r.* , CONCAT(d.forename, ' ', d.surname) AS 'Driver' FROM results r LEFT JOIN qualifying q ON r.driverId = q.driverId LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN constructors c ON r.constructorId = c.constructorId LEFT JOIN races rc ON rc.raceId = r.raceId WHERE rc.year = 2022 AND r.constructorId = ?; ";
-
-
 ?>

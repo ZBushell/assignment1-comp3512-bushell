@@ -1,6 +1,5 @@
 <?php
 
-chdir('/home/n0x/git-repos/assignment1-comp3512-bushell/');
 require_once './includes/config.inc.php';
 require './includes/queries.inc.php';
 
@@ -60,8 +59,9 @@ $db = new F1Database("./data/f1.db");
                     print('<thead><tr><th>Position</th><th>Name</th><th>Team</th><th>Q1</th><th>Q2</th><th>Q3</th></tr></thead>');
                     //print out qualifying table
                     foreach ($qaliResults as $x => $result) {
+                        
                         print('<tr>');
-                        print('<td>' . $x +1 . '</td>');
+                        print('<td>' .$result['pos'] . '</td>');
                         print('<td><a href="driver.php?driverId=' . $result['driverId'] . '">' . $result['Name'] . '</a></td>');
                         print('<td><a href="constructor.php?constructorId=' . $result['constructorId'] . '">' . $result['Team'] . '</a></td>');
                         print('<td>' . $result['Q1']) . '</td>';

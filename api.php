@@ -1,6 +1,5 @@
 <?php
 
-chdir('/home/n0x/git-repos/assignment1-comp3512-bushell/');
 require_once './includes/config.inc.php';
 
 ?>
@@ -34,10 +33,9 @@ require_once './includes/config.inc.php';
            <a href="./api/drivers.php?race=?" class="api-link">Driver Specific Race</a>
            <a href="./api/races.php" class="api-link">All Races</a>
            <a href="./api/races.php?ref=?" class="api-link">Specific Race</a>
-           <a href="./api/qualifying.php?ref=?" class="api-link">All Qualifying</a>
+           <a href="./api/qualifying.php?ref=?" class="api-link">Qualifying for Specific Race</a>
            <a href="./api/results.php?ref=?" class="api-link">All Results</a>
            <a href="./api/results.php?driver=?" class="api-link">Sepcific Results</a> 
-        
         </article>
     </main>
     

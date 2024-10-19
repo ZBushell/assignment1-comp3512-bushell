@@ -13,12 +13,10 @@ header("Content-Type: application/json; charset=UTF-8");
 $db = new F1Database("../data/f1.db");
 $queryResults = [];
 
-// Check if we're returning everything or just one circuit
-if (isset($_GET['ref']) && $_GET['ref'] != null) {
-    $queryResults = $db->preparedQuery($singleCircuit, [$_GET['ref']]);
-} else {
-    $queryResults = $db->pdoQuery($circuitsIn2022);
-}
+
+// don't need an if statement for this one
+$queryResults = $db->pdoQuery($qualifying2022);
+
 
 // Close db session
 $db->dropConnection();

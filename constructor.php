@@ -15,6 +15,7 @@ if (isset($_GET['constructorId']) && $_GET['constructorId'] != null) {
     $details = $db->preparedQuery($ctrDetails, $args);
     $recentRaces = $db->preparedQuery($ctrRaces, $args);
 }
+$db->dropConnection();
 ?>
 <!DOCTYPE html>
 <html lang="en">

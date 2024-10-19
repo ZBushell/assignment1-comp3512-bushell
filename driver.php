@@ -26,6 +26,7 @@ if (isset($_GET['driverId']) && $_GET['driverId'] != null) {
     $details    = "Details Not Found";
     $recentRaces    = "Details Not Found";
 }
+$db->dropConnection();
 
 ?>
 <!DOCTYPE html>
