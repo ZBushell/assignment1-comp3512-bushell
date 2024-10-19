@@ -7,17 +7,16 @@ require './includes/queries.inc.php';
 
 $db = new F1Database("./data/f1.db");
 
+$details = [];
+$recentRaces = [];
 
-    $details = $db->preparedQuery($dvrDetails, 4);
-    $recentRaces = $db->preparedQuery($dvrRaces, 4);
-   
-    
-    //get driver's age
-    $today = new DateTime('today');
-    $dvrDob = new DateTime($details[0]['dob']);
-    $dvrAge= $today->diff($dvrDob);
+if (isset($_GET['constructorId']) && $_GET['constructorId'] != null) {
+    $args = [$_GET['constructorId']];
+    $details = $db->preparedQuery($ctrDetails, $args);
+    $recentRaces = $db->preparedQuery($ctrRaces, $args);
+}
 
-    print("<h1>".$dvrAge."</h1>");
-
+print_r($details);
+print_r($recentRaces);
 
 ?>

@@ -7,19 +7,14 @@ require './includes/queries.inc.php';
 
 $db = new F1Database("./data/f1.db");
 
+$details = [];
+$recentRaces = [];
 
-if (isset($_GET['constructorId']) && $_GET['constructorId'] != null){
-    
+if (isset($_GET['constructorId']) && $_GET['constructorId'] != null) {
     $args = [$_GET['constructorId']];
     $details = $db->preparedQuery($ctrDetails, $args);
     $recentRaces = $db->preparedQuery($ctrRaces, $args);
-    
 }
-else {
-
-}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +26,7 @@ else {
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/browse.css">
-    <title><?php print($details['name']); ?></title>
+    <title><?php print_r($details['name']); ?></title>
 </head>
 
 <?php   try{require_once "./includes/header.inc.php";}
@@ -41,9 +36,13 @@ else {
 <main>
     <aside class="about">
         <ul class="driver-info">
-            <li class="driver"><?php print ($details['name']); ?></li>
-            <li class="driver"><?php print ($details['nationality']); ?></li>
-            <li class="driver"><?php print ($details['url']); ?></li>2
+            <?php
+                foreach($details as $deets){
+                    print('<li class="driver">Name: '.$deets['name'].'</li>');
+                    print('<li class="driver">Nationaliy: '.$deets['country'].'</li>');
+                    print('<li class="driver">URL: <a href="'.$deets['url'].'">'.$deets['name'].'</a></li>');
+                }
+            ?>
         </ul>
     </aside>
     <article class="results">
@@ -62,10 +61,11 @@ else {
        
         foreach ($recentRaces as $race) {
             print( '<tr>');
-            print( '<td>' . $race['name'] . '</td>');
-            print( '<td>' . $race['Driver'] . '</td>');
-            print( '<td>' . $race['position'] . '</td>');
-            print( '<td>' . $race['points'] . '</td>');
+            print('<td>'.$race['round'].'</td>');
+            print('<td>' . $race['name'] . '</td>');
+            print('<td>' . $race['Driver'] . '</td>');
+            print('<td>' . $race['position'] . '</td>');
+            print('<td>' . $race['points'] . '</td>');
             print( '</tr>');
         }
         ?>

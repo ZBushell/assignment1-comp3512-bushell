@@ -48,9 +48,9 @@ $dvrDetails = "SELECT * from drivers WHERE driverId = ? ;";
 
 $dvrRaces = "SELECT c.round AS 'round', r.* , c.name as 'Name' from results r LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN races c ON r.raceId = c.raceId WHERE c.year IN(2022) AND d.driverId = ? ORDER BY c.round ASC;";
 
-$ctrDetails = "SELECT * FROM constructors WHERE constructorId = ?";
+$ctrDetails = "SELECT c.name as 'name', c.url as 'url', c.nationality as 'country' FROM constructors c WHERE constructorId = ?";
 
-$ctrRaces = "SELECT r.* , CONCAT(d.forename, ' ', d.surname) AS 'Driver' FROM results r LEFT JOIN qualifying q ON r.driverId = q.driverId LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN constructors c ON r.constructorId = c.constructorId LEFT JOIN races rc ON rc.raceId = r.raceId WHERE c.year = 2022 AND r.constructorId = ?; ";
+$ctrRaces = "SELECT DISTINCT rc.name as 'name', rc.round as 'round', r.* , CONCAT(d.forename, ' ', d.surname) AS 'Driver' FROM results r LEFT JOIN qualifying q ON r.driverId = q.driverId LEFT JOIN drivers d ON d.driverId = r.driverId LEFT JOIN constructors c ON r.constructorId = c.constructorId LEFT JOIN races rc ON rc.raceId = r.raceId WHERE rc.year = 2022 AND r.constructorId = ?; ";
 
 
 ?>
