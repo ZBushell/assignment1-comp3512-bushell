@@ -1,28 +1,32 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-chdir("/home/n0x/git-repos/assignment1-comp3512-bushell/");
 require_once './includes/config.inc.php';
 require './includes/queries.inc.php';
 
 $db = new F1Database("./data/f1.db");
 
 
-if (isset($_GET['$driverId']) && $_GET['driverId'] != null){
-    
-    //pull driver stuff
+if (isset($_GET['driverId']) && $_GET['driverId'] != null) {
+    // Pull driver stuff
     $args = [$_GET['driverId']];
     $details = $db->preparedQuery($dvrDetails, $args);
     $recentRaces = $db->preparedQuery($dvrRaces, $args);
-   
-    
-    //get driver's age
-    $today = new DateTime('today');
-    $dvrDob = new DateTime($details[0]['dob']);
-    $dvrAge= $today->diff($dvrDob);
 
- 
+    // Get driver's age
+    $today = new DateTime('today');
+
+    if (isset($details[0])) {
+        $dvrDob = new DateTime($details[0]['dob']);
+        $dvrAge = $today->diff($dvrDob);
+    } else {
+        $dvrAge = "Details Not Found";
+    }
+} else {
+    $details    = "Details Not Found";
+    $recentRaces    = "Details Not Found";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
