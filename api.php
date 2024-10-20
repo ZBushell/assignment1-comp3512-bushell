@@ -9,6 +9,10 @@ require_once './includes/config.inc.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./images/Max_Verstappen_Leeuwenkop_logo_unleash_the_lion.png" type="image/x-icon">
+    <!-- 
+[1] Logospot, "Het verhaal achter de logos van Max Verstappen," Logospot.nl, 2023. [Online]. Available: https://www.logospot.nl/het-verhaal-achter-de-logos-van-max-verstappen/. [Accessed: 19-Oct-2024].
+-->
+
     
     <link rel="stylesheet" href="./css/normalize.css">
     <!-- 
