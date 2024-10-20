@@ -16,6 +16,10 @@ $db = new F1Database("./data/f1.db");
     <link rel="shortcut icon" href="./images/Max_Verstappen_Leeuwenkop_logo_unleash_the_lion.png" type="image/x-icon">
 
     <link rel="stylesheet" href="./css/normalize.css">
+    <!-- 
+[1] N. Miller, "normalize.css v8.0.1," GitHub, 2020. [Online]. Available: https://github.com/necolas/normalize.css. [Accessed: Oct. 19, 2024].
+-->
+
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/browse.css">
     <title>Browse</title>
@@ -45,7 +49,8 @@ $db = new F1Database("./data/f1.db");
             
         ?>
         </aside>
-        <article class="results">
+        <article class="overlay">
+            <div class="qualifyingBrowse">
             <?php
                 
                 if(isset($_GET['raceId']) && $_GET['raceId'] != null){
@@ -71,6 +76,9 @@ $db = new F1Database("./data/f1.db");
                     }
 
                     print('</table>');
+                    ?>
+                    </div><div class="raceBrowse">
+                    <?php
                     print('<div class="browse-results browse-grid">');
                     print('<table class="table">');
                     print('<thead><tr><th>Position</th><th>Name</th><th>Team</th><th>Laps</th><th>Pts</th></tr></thead>');
@@ -93,6 +101,7 @@ $db = new F1Database("./data/f1.db");
                 }
                 $db->dropConnection();
             ?>
+            </div>
         </article>
         </main>
            

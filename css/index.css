@@ -86,16 +86,34 @@ aside{
 
 }
 article{
-    background-color: var(--bg-color);
-    color: var(--main-text);
-    font-size: 1.25rem;
-
-    padding: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: left;
+    background-image: url("../images/verstappen.png");
+    /* 
+    [2] "Verstappen charges to record 16th win of the season after Pérez's opening lap," Formula 1, 2024. [Online]. Available: https://www.formula1.com/en/latest/article/verstappen-charges-to-record-16th-win-of-the-season-after-perezs-opening-lap.4HoUxkHmH8EhxFRfauSQzS. [Accessed: Oct. 19, 2024].
+    */
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start:2 ;
+    grid-column-end:4 ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr;
+    
+}
+.overlay{
+    background-color: var(--nav-color);
+}
+.article-content {
+    position: relative;
+    background: transparent !important;
+    color: var(--main-text) !important;
+    font-size: 1.25rem !important;
+    padding: 2rem !important;
+    z-index: 3 !important;
+    pointer-events: auto; 
 }
 
 
@@ -148,4 +166,8 @@ a:hover {
 }
 ul {
     list-style-type: none;
+}
+
+li span{
+    margin-left: 3rem;
 }

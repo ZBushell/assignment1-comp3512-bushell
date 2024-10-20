@@ -1,18 +1,34 @@
+@import url(main.css);
 .results{
     display: flex;
     flex-direction: row;
     padding: 2rem;
 
 }
+article{
+    background-image: none;
+
+}
 .browse-results{
     justify-content: center;
     align-items: center;
 }
+table{
+    color: var(--header-text);
+    
+}
 th td{
     justify-content: left;
     align-items: center;
-    padding: 0.25rem; 
+    padding-right: 1rem; 
 }
 thead {
     margin-bottom: 2rem;
+}
+a{
+    color: var(--header-text);  
+}
+.select-a-race{
+    color: var(--header-text);
+    font-weight: 600;
 }

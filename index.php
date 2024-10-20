@@ -15,6 +15,10 @@ require_once "./includes/config.inc.php";
     <title>Zach's F1 Addiction</title>
     
     <link rel="stylesheet" href="./css/normalize.css">
+    <!-- 
+[1] N. Miller, "normalize.css v8.0.1," GitHub, 2020. [Online]. Available: https://github.com/necolas/normalize.css. [Accessed: Oct. 19, 2024].
+-->
+
     <link rel="stylesheet" href="./css/index.css">
 </head>
 
@@ -35,8 +39,9 @@ require_once "./includes/config.inc.php";
             <p>This website may or may not be programmed to only return Max Verstappen in his rightful position, first. Any #TeamLewis fans still crying over 2021 can kindly leave. So keep raging that Mercedes can't compete, internalize the fact that you belong below Williams, and realize Adrian Newey and his cars are the greatest thing since sliced bread.</p>
             <div class="nav-buttons"><a href="./browse.php">Browse 2022 Season</a></div>
         </aside>
-        <article class="results">
-            <img src="./images/verstappen.png" alt="Well this is embarrasing isn't it. This was supposed to be an image of Max Verstappen's helmet design">            
+        <article class="overlay">
+        <div class="article-content">
+        </div>       
         </article>
 
     </main>

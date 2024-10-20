@@ -37,6 +37,11 @@ $db->dropConnection();
     <link rel="shortcut icon" href="./images/Max_Verstappen_Leeuwenkop_logo_unleash_the_lion.png" type="image/x-icon">
 
     <link rel="stylesheet" href="./css/normalize.css">
+    <!-- 
+[1] N. Miller, "normalize.css v8.0.1," GitHub, 2020. [Online]. Available: https://github.com/necolas/normalize.css. [Accessed: Oct. 19, 2024].
+-->
+
+
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/browse.css">
     <title><?php print($details[0]['forename'] .' '. $details[0]['surname']); ?></title>
@@ -61,7 +66,8 @@ $db->dropConnection();
             ?>
         </ul>
     </aside>
-    <article class="results">
+    <article class="overlay">
+    <div class="article-content">
     <table class="table">
     <thead>
         <tr>
@@ -85,6 +91,7 @@ $db->dropConnection();
         ?>
     </thbody>
     </table>
+    </div>
     </article>
 </main>
 </body>
