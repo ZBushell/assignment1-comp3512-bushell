@@ -170,4 +170,5 @@ ul {
 
 li span{
     margin-left: 3rem;
+    color: var(--main-text);
 }
