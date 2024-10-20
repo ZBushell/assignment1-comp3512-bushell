@@ -21,7 +21,7 @@
     }
     else if(isset($_GET['driver']) && $_GET['driver'] != null) {
         
-        $args = [$_GET['ref']];
+        $args = [$_GET['driver']];
         $queryResults = $db->preparedQuery($resultsForGivenDriver, $args);
     } 
     else 

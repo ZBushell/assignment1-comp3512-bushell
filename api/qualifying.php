@@ -15,8 +15,10 @@ $queryResults = [];
 
 
 // don't need an if statement for this one
-$queryResults = $db->pdoQuery($qualifying2022);
-
+if(isset($_GET['ref']) && $_GET['ref'] != null){
+    $args = [$_GET['ref']];
+    $queryResults = $db->preparedQuery($apiQualifying, $args);
+}
 
 // Close db session
 $db->dropConnection();

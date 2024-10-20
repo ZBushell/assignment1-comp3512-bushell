@@ -17,12 +17,12 @@
     if(isset($_GET['ref']) && $_GET['ref'] != null){
 
         $args = [$_GET['ref']];
-        $queryResults = $db->preparedQuery($specificDriverIn2022, [$_GET['ref']]);
+        $queryResults = $db->preparedQuery($specificDriverIn2022, $args);
     }
     else if(isset($_GET['race']) && $_GET['race'] != null) {
         
         $args = [$_GET['race']];
-        $queryResults = $db->preparedQuery($driverWithSpecificRaceId , [$_GET['race']]);
+        $queryResults = $db->preparedQuery($driversInSpecificRace , $args);
         
     }
     else {

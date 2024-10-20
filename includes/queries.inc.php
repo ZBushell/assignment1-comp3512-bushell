@@ -20,23 +20,26 @@ $circuitsIn2022 = "SELECT DISTINCT c.* FROM circuits c LEFT JOIN races r ON c.ci
 $singleCircuit = "SELECT DISTINCT c.* FROM circuits c LEFT JOIN races r ON c.circuitID = r.circuitID WHERE r.year IN(2022) AND c.circuitRef = ?  ORDER BY r.date DESC;";
 
 // Driver with a specific race ID
-$driverWithSpecificRaceId = "SELECT DISTINCT d.* FROM drivers d LEFT JOIN qualifying q ON d.driverId = q.driverId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.year IN(2022) AND r.raceId = ? ;";
+$driversInSpecificRace = "SELECT DISTINCT d.* FROM drivers d LEFT JOIN qualifying q ON d.driverId = q.driverId LEFT JOIN races r ON q.raceId = r.raceId WHERE r.raceId = ? ;";
 
 // Races in 2022
 $racesIn2022 = "SELECT * FROM races r WHERE r.year IN(2022) ORDER BY round;";
 
 // Specific race
-$specificRace = "SELECT r.name, c.name, c.location, c.country FROM races r LEFT JOIN results re ON r.raceId = re.raceId LEFT JOIN circuits c ON r.circuitID = c.circuitId WHERE r.raceId = ? ;";
+$specificRace = "SELECT DISTINCT r.name, c.name, c.location, c.country FROM races r LEFT JOIN results re ON r.raceId = re.raceId LEFT JOIN circuits c ON r.circuitID = c.circuitId WHERE r.raceId = ? ;";
+
+
+//api qualifying results
+$apiQualifying = "SELECT q.number, q.position, q.q1, q.q2, q.q3, d.driverRef, d.code, d.forename, d.surname, rc.name, rc.round, rc.year, rc.date, c.name, c.nationality, c.constructorRef  FROM qualifying q LEFT JOIN races rc ON q.raceId = rc.raceId LEFT JOIN drivers d ON d.driverId = q.driverId LEFT JOIN constructors c ON c.constructorId = q.constructorId WHERE rc.raceId = ? ORDER BY q.position ASC;";
+
+
 
 // Results for a specific race
-$resultsForSpecificRace = "SELECT d.driverRef, d.code, d.forename, d.surname, ra.name, ra.round, ra.year, ra.date, c.name, c.constructorRef, c.nationality FROM drivers d LEFT JOIN results r ON d.driverID = r.driverID LEFT JOIN constructors c ON c.constructorId = r.constructorId LEFT JOIN races ra ON ra.raceId = r.raceId WHERE r.raceId = ? ORDER BY r.grid ASC;";
+$resultsForSpecificRace = "SELECT d.driverRef, d.code, d.forename, d.surname, ra.name, ra.round, ra.year, ra.date, c.name, c.constructorRef, c.nationality , r.number, r.grid, r.position, r.positionText, r.positionOrder, r.points, r.laps, r.time, r.milliseconds, r.fastestLap, r.rank, r.fastestLapTime, r.fastestLapSpeed FROM drivers d LEFT JOIN results r ON d.driverID = r.driverID LEFT JOIN constructors c ON c.constructorId = r.constructorId LEFT JOIN races ra ON ra.raceId = r.raceId WHERE r.raceId = ? ORDER BY r.grid ASC;";
 
 
 // Results for a given driver
-$resultsForGivenDriver = "SELECT r.* FROM results r LEFT JOIN drivers d ON r.driverID = d.driverID WHERE d.driverRef = ? ;";
-
-//2022 qualifying results
-$qualifying2022 = "SELECT * FROM qualifying q LEFT JOIN races c ON q.raceId = c.raceId WHERE c.year = 2022 AND c.raceId = ?;";
+$resultsForGivenDriver = "SELECT r.number, r.grid, r.position, r.positionText, r.positionOrder, r.points, r.laps, r.time, r.milliseconds, r.fastestLap, r.rank, r.fastestLapTime, r.fastestLapSpeed FROM results r LEFT JOIN drivers d ON r.driverId = d.driverId WHERE d.driverRef = ?;";
 
 /* non API queries */
 
